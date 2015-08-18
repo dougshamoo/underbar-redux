@@ -313,7 +313,7 @@
     var hashed = {};
     
     return function(arg){
-      if(!(hashed[arg])){Ref
+      if(!(hashed[arg])){
         hashed[arg] = func.apply(this, arguments);
       }
 
