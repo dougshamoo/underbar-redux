@@ -225,18 +225,6 @@
     return !_.every(collection, function(value) {
       return !iterator(value);
     });
-// [null, 0, 'yes', false]
-// [1, 3, 5, 6]   isOdd() --> !isOdd() = isEven()
-// 
-    /*return !_.every(collection, function(element) {
-      if (iterator(element)) {
-        return false;
-      }
-      else {
-        return true;
-      }
-    });*/
-
    
   };
 
@@ -260,11 +248,25 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    for (var i = 1; i < arguments.length; i++) {
+      for (var key in arguments[i]) {
+        obj[key] = arguments[i][key];
+      }
+    }
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    for(var i = 1; i < arguments.length; i++){
+      for(var key in arguments[i]){
+        if(!(key in obj)){
+          obj[key] = arguments[i][key];
+        }
+      }
+    }
+    return obj;
   };
 
 
