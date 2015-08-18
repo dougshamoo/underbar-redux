@@ -97,20 +97,28 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
-    var results = [];
-    _.each(collection, function(value){
-      if(!test(value)){
-        results.push(value);
-      }
+    return _.filter(collection, function(value) {
+      return !test(value);
     });
-    return results;
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var results = [];
+    var uniques = {};
+
+    _.each(array, function(element) {
+      uniques[element] = element;
+    });
+
+    _.each(uniques, function(value) {
+      results.push(value);
+    });
+
+    return results;
   };
 
-
+  
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
     // map() is a useful primitive iteration function that works a lot
