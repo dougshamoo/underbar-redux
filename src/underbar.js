@@ -310,6 +310,15 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var hashed = {};
+    return function(){
+      if(arguments[0] in hashed){
+        return hashed[arguments[0]];
+      }else{
+        hashed[arguments[0]] = func.apply(this, arguments);
+        return hashed[arguments[0]];
+      }
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -319,6 +328,7 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    
   };
 
 
