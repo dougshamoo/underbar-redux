@@ -311,13 +311,13 @@
   // instead if possible.
   _.memoize = function(func) {
     var hashed = {};
-    return function(){
-      if(arguments[0] in hashed){
-        return hashed[arguments[0]];
-      }else{
-        hashed[arguments[0]] = func.apply(this, arguments);
-        return hashed[arguments[0]];
+    
+    return function(arg){
+      if(!(hashed[arg])){Ref
+        hashed[arg] = func.apply(this, arguments);
       }
+
+      return hashed[arg];
     };
   };
 
